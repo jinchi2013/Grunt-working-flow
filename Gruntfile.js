@@ -22,25 +22,24 @@ module.exports = function(grunt){
 				files: {
 					'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
 				}
-			},
-			qunit: {
-				files: ['test/**/*.html']
-			},
-			jshint: {
-				files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-				options : {
-					globals: {
-						jQuery: true,
-						console: true,
-						module: true
-					}
-				}
-			},
-			watch: {
-				files: ['<%= jshint.files %>'],
-				tasks: ['jshint', 'qunit']
 			}
-
+		},
+		qunit: {
+			files: ['test/**/*.html']
+		},
+		jshint: {
+			files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+			options : {
+				globals: {
+					jQuery: true,
+					console: true,
+					module: true
+				}
+			}
+		},
+		watch: {
+			files: ['<%= jshint.files %>'],
+			tasks: ['jshint', 'qunit', 'sass']
 		}
 	});
 
@@ -49,8 +48,9 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-qunit');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 
 	grunt.registerTask('test', ['jshint', 'qunit']);
 
-	grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify', 'sass']);
 }
