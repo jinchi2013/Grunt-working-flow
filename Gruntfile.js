@@ -2,6 +2,20 @@ module.exports = function(grunt){
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		clean: {
+			test: ['test/tmp', '.sass-cache']
+		},
+		sass: {
+			options: {
+				sourcemap: 'none',
+				style:'compressed'
+			},
+			compile: {
+				files: {
+					'dist/css/stylesheet.css': 'src/**/*.scss'
+				}
+			}
+		},
 		concat:{
 			options: {
 				separator: ';'
@@ -52,5 +66,5 @@ module.exports = function(grunt){
 
 	grunt.registerTask('test', ['jshint', 'qunit']);
 
-	grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify', 'sass']);
-}
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'sass']);
+};
