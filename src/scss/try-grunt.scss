@@ -30,3 +30,8 @@ nav {
 .rect-box {
 	@include border-radius(10px);	
 }
+
+article[role="main"] {
+	float: left;
+	width: 600px / 960px * 100%;
+}
